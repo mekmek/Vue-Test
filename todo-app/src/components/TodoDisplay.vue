@@ -13,8 +13,8 @@
           <td>{{ idx }}</td>
           <td>{{ item.todo }}</td>
           <td>
-            <button @click="changeStatus(idx)">{{ item.status }}</button>
-            <button @click="deleteTodo(idx)">削除</button>
+            <button :id="`change-status-${idx}`" @click="changeStatus(idx)">{{ item.status }}</button>
+            <button :id="`delete-todo-${idx}`" @click="deleteTodo(idx)">削除</button>
           </td>
         </tr>
       </tbody>
