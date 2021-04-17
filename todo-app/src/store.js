@@ -21,7 +21,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    showState(state) {
+    showStatus(state) {
       return state.showStatus
     },
     filteredTodos(state) {

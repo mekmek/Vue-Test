@@ -14,7 +14,7 @@ export default {
   computed: {
     showStatus: {
       get() {
-        return this.$store.getters.showState
+        return this.$store.getters.showStatus
       },
       set(value) {
         this.$store.dispatch('ciUpdateShowStatus', value)
