@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     addTodo() {
-      if (this.todo) this.$emit('add-todo', this.todo);
+      this.$store.dispatch('addTodo', this.todo)
       this.todo = '';
     }
   }
