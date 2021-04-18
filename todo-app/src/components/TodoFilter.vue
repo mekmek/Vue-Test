@@ -11,14 +11,14 @@
 <script>
 export default {
   name: "TodoFilter",
-  data() {
-    return {
-      showStatus: 'すべて'
-    }
-  },
-  watch: {
-    showStatus() {
-      this.$emit('change-show-status', this.showStatus);
+  computed: {
+    showStatus: {
+      get() {
+        return this.$store.getters.showStatus
+      },
+      set(value) {
+        this.$store.dispatch('ciUpdateShowStatus', value)
+      }
     }
   }
 }

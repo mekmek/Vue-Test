@@ -9,12 +9,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, idx) in todos" :key=idx v-show="showStatus == 'すべて' || item.status == showStatus">
-          <td>{{ idx }}</td>
+        <tr v-for="(item, idx) in filteredTodos" :key=idx>
+          <td>{{ item.id }}</td>
           <td>{{ item.todo }}</td>
           <td>
-            <button :id="`change-status-${idx}`" @click="changeStatus(idx)">{{ item.status }}</button>
-            <button :id="`delete-todo-${idx}`" @click="deleteTodo(idx)">削除</button>
+            <button @click="changeStatus(item.id)">{{ item.status }}</button>
+            <button @click="deleteTodo(item.id)">削除</button>
           </td>
         </tr>
       </tbody>
@@ -23,17 +23,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: "TodoDisplay",
-  props: ['todos', 'showStatus'],
   methods: {
-    changeStatus(idx) {
-      this.$emit('change-status', idx);
+    changeStatus(id) {
+      this.$store.dispatch('changeStatus', id)
     },
-    deleteTodo(idx) {
-      this.$emit('delete-todo', idx);
+    deleteTodo(id) {
+      this.$store.dispatch('deleteTodo', id)
     }
-  }
+  },
+  computed: mapGetters(['filteredTodos'])
 }
 </script>
 
