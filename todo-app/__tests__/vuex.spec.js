@@ -1,15 +1,35 @@
 import { createLocalVue } from "@vue/test-utils"
 import Vuex from 'vuex'
-import todoStore from '@/store'
+import actions from '@/store/actions'
+import getters from '@/store/getters'
+import mutations from '@/store/mutations'
+import cloneDeep from 'lodash.clonedeep'
 
 describe('vuexのテスト', () => {
   let localVue
   let store
   
+  const state = {
+    showStatus: 'すべて',
+    todos: [],
+    id: 0
+  }
+
+  const initStore = () => {
+    return cloneDeep({
+      state,
+      getters,
+      actions,
+      mutations
+    })
+  }
+
   beforeEach(() => {
     localVue = createLocalVue()
     localVue.use(Vuex)
-    store = new Vuex.Store(todoStore)
+    // console.log(todoStore)
+    // console.log(cloneDeep(todoStore))
+    store = new Vuex.Store(initStore())
   })
 
   it('Test of dispatch ciUpdateShowStatus', () => {

@@ -1,40 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
-const state = () => ({
-  showStatus: 'すべて',
-  todos: [],
-  id: 0
-})
-
-const mutations = {
-  updateShowStatus(state, value) {
-    state.showStatus = value
-  },
-  updateTodos(state, arr) {
-    state.todos = arr
-  },
-  updateId(state, value) {
-    state.id = value
-  }
-}
-
-const getters = {
-  showStatus(state) {
-    return state.showStatus
-  },
-  filteredTodos(state) {
-    if (state.showStatus === 'すべて') {
-      return state.todos
-    } else {
-      return state.todos.filter(todo => todo.status === state.showStatus)
-    }
-  }
-}
-
-const actions = {
+export default {
   ciUpdateShowStatus(context, value) {
     context.commit('updateShowStatus', value)
   },
@@ -69,11 +33,4 @@ const actions = {
     context.commit('updateId', id)
     context.commit('updateTodos', todos)
   }
-}
-
-export default {
-  state,
-  mutations,
-  getters,
-  actions
 }
