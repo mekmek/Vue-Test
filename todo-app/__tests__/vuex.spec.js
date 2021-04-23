@@ -27,8 +27,6 @@ describe('vuexのテスト', () => {
   beforeEach(() => {
     localVue = createLocalVue()
     localVue.use(Vuex)
-    // console.log(todoStore)
-    // console.log(cloneDeep(todoStore))
     store = new Vuex.Store(initStore())
   })
 
